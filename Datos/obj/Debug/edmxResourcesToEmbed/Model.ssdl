@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="InventarioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Categoria">
+    <Key>
+      <PropertyRef Name="CategoriaID" />
+    </Key>
+    <Property Name="CategoriaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="ClienteID" />
+    </Key>
+    <Property Name="ClienteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RNCCedula" Type="nvarchar" MaxLength="50" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="150" />
+    <Property Name="Telefono" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="150" />
+    <Property Name="CategoriaID" Type="int" />
+    <Property Name="EsRNC" Type="bit" />
+  </EntityType>
+  <EntityType Name="DetalleFactura">
+    <Key>
+      <PropertyRef Name="DetalleFacturaID" />
+    </Key>
+    <Property Name="DetalleFacturaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FacturaID" Type="int" />
+    <Property Name="ProductoID" Type="int" />
+    <Property Name="Cantidad" Type="int" />
+    <Property Name="PrecioUnitario" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PrecioTotal" Type="decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="DetalleStockFacturacion">
+    <Key>
+      <PropertyRef Name="DetalleStockFacturacionID" />
+    </Key>
+    <Property Name="DetalleStockFacturacionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StockFacturacionID" Type="int" />
+    <Property Name="ProductoID" Type="int" />
+    <Property Name="Cantidad" Type="int" />
+    <Property Name="PrecioUnitario" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PrecioTotal" Type="decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="Entrada">
+    <Key>
+      <PropertyRef Name="EntradaID" />
+    </Key>
+    <Property Name="EntradaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductoID" Type="int" />
+    <Property Name="ProveedorID" Type="int" />
+    <Property Name="Cantidad" Type="int" />
+    <Property Name="PrecioUnitario" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="FechaEntrada" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Facturacion">
+    <Key>
+      <PropertyRef Name="FacturacionID" />
+    </Key>
+    <Property Name="FacturacionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClienteID" Type="int" />
+    <Property Name="PrecioConITBIS" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="FechaFactura" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Productos">
+    <Key>
+      <PropertyRef Name="ProductoID" />
+    </Key>
+    <Property Name="ProductoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="200" />
+    <Property Name="Precio" Type="decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="Proveedor">
+    <Key>
+      <PropertyRef Name="ProveedorID" />
+    </Key>
+    <Property Name="ProveedorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RNCCedula" Type="nvarchar" MaxLength="50" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="150" />
+    <Property Name="Telefono" Type="nvarchar" MaxLength="150" />
+    <Property Name="Email" Type="nvarchar" MaxLength="150" />
+    <Property Name="EsRNC" Type="bit" />
+  </EntityType>
+  <EntityType Name="Stock">
+    <Key>
+      <PropertyRef Name="StockID" />
+    </Key>
+    <Property Name="StockID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductoID" Type="int" />
+    <Property Name="Cantidad" Type="int" />
+    <Property Name="FechaStock" Type="datetime" />
+    <Property Name="FechaActualizacion" Type="datetime" />
+  </EntityType>
+  <EntityType Name="StockFacturacion">
+    <Key>
+      <PropertyRef Name="StockFacturacionID" />
+    </Key>
+    <Property Name="StockFacturacionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StockID" Type="int" />
+    <Property Name="FacturacionID" Type="int" />
+    <Property Name="Precio" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Fecha" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_Cliente_Categoria">
+    <End Role="Categoria" Type="Self.Categoria" Multiplicity="0..1" />
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="CategoriaID" />
+      </Principal>
+      <Dependent Role="Cliente">
+        <PropertyRef Name="CategoriaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DetalleFactura_Facturacion">
+    <End Role="Facturacion" Type="Self.Facturacion" Multiplicity="0..1" />
+    <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Facturacion">
+        <PropertyRef Name="FacturacionID" />
+      </Principal>
+      <Dependent Role="DetalleFactura">
+        <PropertyRef Name="FacturaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DetalleFactura_Productos">
+    <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
+    <End Role="DetalleFactura" Type="Self.DetalleFactura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="ProductoID" />
+      </Principal>
+      <Dependent Role="DetalleFactura">
+        <PropertyRef Name="ProductoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DetalleStockFacturacion_Productos">
+    <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
+    <End Role="DetalleStockFacturacion" Type="Self.DetalleStockFacturacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="ProductoID" />
+      </Principal>
+      <Dependent Role="DetalleStockFacturacion">
+        <PropertyRef Name="ProductoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DetalleStockFacturacion_StockFacturacion">
+    <End Role="StockFacturacion" Type="Self.StockFacturacion" Multiplicity="0..1" />
+    <End Role="DetalleStockFacturacion" Type="Self.DetalleStockFacturacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockFacturacion">
+        <PropertyRef Name="StockFacturacionID" />
+      </Principal>
+      <Dependent Role="DetalleStockFacturacion">
+        <PropertyRef Name="StockFacturacionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Entrada_Productos">
+    <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
+    <End Role="Entrada" Type="Self.Entrada" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="ProductoID" />
+      </Principal>
+      <Dependent Role="Entrada">
+        <PropertyRef Name="ProductoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Entrada_Proveedor">
+    <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
+    <End Role="Entrada" Type="Self.Entrada" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proveedor">
+        <PropertyRef Name="ProveedorID" />
+      </Principal>
+      <Dependent Role="Entrada">
+        <PropertyRef Name="ProveedorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Facturacion_Cliente">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+    <End Role="Facturacion" Type="Self.Facturacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="ClienteID" />
+      </Principal>
+      <Dependent Role="Facturacion">
+        <PropertyRef Name="ClienteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_Productos">
+    <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
+    <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="ProductoID" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="ProductoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockFacturacion_Facturacion">
+    <End Role="Facturacion" Type="Self.Facturacion" Multiplicity="0..1" />
+    <End Role="StockFacturacion" Type="Self.StockFacturacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Facturacion">
+        <PropertyRef Name="FacturacionID" />
+      </Principal>
+      <Dependent Role="StockFacturacion">
+        <PropertyRef Name="FacturacionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockFacturacion_Stock">
+    <End Role="Stock" Type="Self.Stock" Multiplicity="0..1" />
+    <End Role="StockFacturacion" Type="Self.StockFacturacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stock">
+        <PropertyRef Name="StockID" />
+      </Principal>
+      <Dependent Role="StockFacturacion">
+        <PropertyRef Name="StockID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="InventarioModelStoreContainer">
+    <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DetalleFactura" EntityType="Self.DetalleFactura" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DetalleStockFacturacion" EntityType="Self.DetalleStockFacturacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Entrada" EntityType="Self.Entrada" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Facturacion" EntityType="Self.Facturacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Proveedor" EntityType="Self.Proveedor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StockFacturacion" EntityType="Self.StockFacturacion" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Cliente_Categoria" Association="Self.FK_Cliente_Categoria">
+      <End Role="Categoria" EntitySet="Categoria" />
+      <End Role="Cliente" EntitySet="Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DetalleFactura_Facturacion" Association="Self.FK_DetalleFactura_Facturacion">
+      <End Role="Facturacion" EntitySet="Facturacion" />
+      <End Role="DetalleFactura" EntitySet="DetalleFactura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DetalleFactura_Productos" Association="Self.FK_DetalleFactura_Productos">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="DetalleFactura" EntitySet="DetalleFactura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DetalleStockFacturacion_Productos" Association="Self.FK_DetalleStockFacturacion_Productos">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="DetalleStockFacturacion" EntitySet="DetalleStockFacturacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DetalleStockFacturacion_StockFacturacion" Association="Self.FK_DetalleStockFacturacion_StockFacturacion">
+      <End Role="StockFacturacion" EntitySet="StockFacturacion" />
+      <End Role="DetalleStockFacturacion" EntitySet="DetalleStockFacturacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Entrada_Productos" Association="Self.FK_Entrada_Productos">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="Entrada" EntitySet="Entrada" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Entrada_Proveedor" Association="Self.FK_Entrada_Proveedor">
+      <End Role="Proveedor" EntitySet="Proveedor" />
+      <End Role="Entrada" EntitySet="Entrada" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Facturacion_Cliente" Association="Self.FK_Facturacion_Cliente">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Facturacion" EntitySet="Facturacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_Productos" Association="Self.FK_Stock_Productos">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="Stock" EntitySet="Stock" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockFacturacion_Facturacion" Association="Self.FK_StockFacturacion_Facturacion">
+      <End Role="Facturacion" EntitySet="Facturacion" />
+      <End Role="StockFacturacion" EntitySet="StockFacturacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockFacturacion_Stock" Association="Self.FK_StockFacturacion_Stock">
+      <End Role="Stock" EntitySet="Stock" />
+      <End Role="StockFacturacion" EntitySet="StockFacturacion" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

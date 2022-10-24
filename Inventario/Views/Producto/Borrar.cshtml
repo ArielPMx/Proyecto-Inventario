@@ -1,0 +1,70 @@
+﻿@model Datos.ProductoModel
+@{
+    ViewBag.Title = "Borrar";
+}
+
+<link rel="stylesheet" href="~/Content/Template/bower_components/bootstrap-select/dist/css/bootstrap-select.css">
+<link href="~/Content/custom.css" rel="stylesheet" />
+
+<div class="container-fluid">
+    <div class="row">
+        <form method="post" action="@Url.Action("Borrar","Producto")">
+            @Html.HiddenFor(x => x._productoId)
+            <div class="col-lg-12">
+                <!-- DataTableArea -->
+                <div class="content-box">
+                    <div class="head info-bg clearfix">
+                        <h5 class="content-title pull-left">Borrar Producto</h5>
+                    </div>
+                    <div class="content">
+                        <div class="form-group">
+                            <label class="control-label info-color">Nombre Producto</label>
+                            <input type="text" name="_nombre" value="@Model._nombre" class="form-control input-info" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label info-color">Precio Producto</label>
+                            <input type="text" name="_precio" value="@Model._precio" class="form-control input-info" disabled>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success">Borrar</button>
+                            <a href="@Url.Action("Index","Producto")" class="btn btn-danger" style="color:white">Cancelar</a>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- DataTableArea -->
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/Content/Template/bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
+    <script src="~/Content/Template/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/Template/bower_components/datatables.net-responsive/js/dataTables.responsive.js"></script>
+    <script src="~/Content/Template/bower_components/jqvmap/dist/jquery.vmap.min.js"></script>
+    <script src="~/Content/Template/bower_components/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="~/Content/Template/bower_components/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <script src="~/Content/Template/bower_components/moment/min/moment.min.js"></script>
+    <script src="~/Content/Template/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+
+
+    <script>
+        $("#datetimepicker1").datetimepicker({
+            icons: {
+                time: "zmdi zmdi-time",
+                date: "zmdi zmdi-calendar",
+                up: "zmdi zmdi-chevron-up",
+                down: "zmdi zmdi-chevron-down",
+                previous: "zmdi zmdi-chevron-left",
+                next: "zmdi zmdi-chevron-right"
+            }
+        });
+    </script>
+
+}
+
+
+

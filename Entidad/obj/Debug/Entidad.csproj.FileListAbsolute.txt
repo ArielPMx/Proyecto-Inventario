@@ -1,0 +1,11 @@
+D:\GitHub\InventarioApp\Inventario\Entidad\bin\Debug\Entidad.dll
+D:\GitHub\InventarioApp\Inventario\Entidad\bin\Debug\Entidad.pdb
+D:\GitHub\InventarioApp\Inventario\Entidad\obj\Debug\Entidad.csproj.CoreCompileInputs.cache
+D:\GitHub\InventarioApp\Inventario\Entidad\obj\Debug\Entidad.dll
+D:\GitHub\InventarioApp\Inventario\Entidad\obj\Debug\Entidad.pdb
+C:\Users\ariel\source\repos\sa\Entidad\bin\Debug\Entidad.dll
+C:\Users\ariel\source\repos\sa\Entidad\bin\Debug\Entidad.pdb
+C:\Users\ariel\source\repos\sa\Entidad\obj\Debug\Entidad.csprojAssemblyReference.cache
+C:\Users\ariel\source\repos\sa\Entidad\obj\Debug\Entidad.csproj.CoreCompileInputs.cache
+C:\Users\ariel\source\repos\sa\Entidad\obj\Debug\Entidad.dll
+C:\Users\ariel\source\repos\sa\Entidad\obj\Debug\Entidad.pdb

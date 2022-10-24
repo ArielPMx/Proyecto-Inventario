@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1ac734243a2447a69c0f1bd7ddcd9f61" Name="Diagram1" ZoomLevel="93">
+        <EntityTypeShape EntityType="InventarioModel.Categoria" Width="1.5" PointX="1.5" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventarioModel.Cliente" Width="1.5" PointX="3.75" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventarioModel.Entrada" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventarioModel.Productos" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventarioModel.Proveedor" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="InventarioModel.FK_Cliente_Categoria" ManuallyRouted="false" />
+        <AssociationConnector Association="InventarioModel.FK_Entrada_Productos" ManuallyRouted="false" />
+        <AssociationConnector Association="InventarioModel.FK_Entrada_Proveedor" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="InventarioModel.Stock" Width="1.5" PointX="3" PointY="8.75" />
+        <AssociationConnector Association="InventarioModel.FK_Stock_Productos" />
+        <EntityTypeShape EntityType="InventarioModel.DetalleFactura" Width="1.5" PointX="6" PointY="4.625" />
+        <EntityTypeShape EntityType="InventarioModel.DetalleStockFacturacion" Width="1.5" PointX="8.5" PointY="6.75" />
+        <EntityTypeShape EntityType="InventarioModel.Facturacion" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InventarioModel.StockFacturacion" Width="1.5" PointX="5.25" PointY="8.625" />
+        <AssociationConnector Association="InventarioModel.FK_Facturacion_Cliente" />
+        <AssociationConnector Association="InventarioModel.FK_DetalleFactura_Facturacion" />
+        <AssociationConnector Association="InventarioModel.FK_DetalleFactura_Productos" />
+        <AssociationConnector Association="InventarioModel.FK_DetalleStockFacturacion_Productos" />
+        <AssociationConnector Association="InventarioModel.FK_DetalleStockFacturacion_StockFacturacion" />
+        <AssociationConnector Association="InventarioModel.FK_StockFacturacion_Facturacion" />
+        <AssociationConnector Association="InventarioModel.FK_StockFacturacion_Stock" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
