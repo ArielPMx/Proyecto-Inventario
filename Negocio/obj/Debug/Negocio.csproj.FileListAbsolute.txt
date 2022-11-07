@@ -68,3 +68,17 @@ C:\Users\ariel\Desktop\a\sa\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.c
 C:\Users\ariel\Desktop\a\sa\Negocio\obj\Debug\Negocio.csproj.CopyComplete
 C:\Users\ariel\Desktop\a\sa\Negocio\obj\Debug\Negocio.dll
 C:\Users\ariel\Desktop\a\sa\Negocio\obj\Debug\Negocio.pdb
+C:\Users\ariel\Desktop\1erModulo\sa\Negocio\bin\Debug\Negocio.dll
+C:\Users\ariel\Desktop\1erModulo\sa\Negocio\bin\Debug\Negocio.pdb
+C:\Users\ariel\Desktop\1erModulo\sa\Negocio\bin\Debug\Datos.dll
+C:\Users\ariel\Desktop\1erModulo\sa\Negocio\bin\Debug\Entidad.dll
+C:\Users\ariel\Desktop\1erModulo\sa\Negocio\bin\Debug\EntityFramework.dll
+C:\Users\ariel\Desktop\1erModulo\sa\Negocio\bin\Debug\Datos.pdb
+C:\Users\ariel\Desktop\1erModulo\sa\Negocio\bin\Debug\Datos.dll.config
+C:\Users\ariel\Desktop\1erModulo\sa\Negocio\bin\Debug\Entidad.pdb
+C:\Users\ariel\Desktop\1erModulo\sa\Negocio\bin\Debug\EntityFramework.xml
+C:\Users\ariel\Desktop\1erModulo\sa\Negocio\obj\Debug\Negocio.csprojAssemblyReference.cache
+C:\Users\ariel\Desktop\1erModulo\sa\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+C:\Users\ariel\Desktop\1erModulo\sa\Negocio\obj\Debug\Negocio.csproj.CopyComplete
+C:\Users\ariel\Desktop\1erModulo\sa\Negocio\obj\Debug\Negocio.dll
+C:\Users\ariel\Desktop\1erModulo\sa\Negocio\obj\Debug\Negocio.pdb
