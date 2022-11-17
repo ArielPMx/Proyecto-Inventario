@@ -1,15 +1,14 @@
-﻿@model IEnumerable<Datos.ClienteModel>
+﻿@model IEnumerable<Datos.ProveedorModel>
 @{
     ViewBag.Title = "Index";
 }
 
-
 <link rel="stylesheet" href="~/Content/Template/bower_components/datatables/media/css/jquery.dataTables.min.css">
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-6"><h4>Lista de Clientes</h4></div>
+        <div class="col-lg-6"><h4>Lista de Proveedores</h4></div>
         <div class="col-lg-6">
-            <a href="@Url.Action("Nuevo","Cliente")" class="btn btn-success" style="color:white">Agregar</a>
+            <a href="@Url.Action("Nuevo","Proveedor")" class="btn btn-success" style="color:white">Agregar</a>
         </div>
         <div class="col-lg-12">
             <!-- DataTableArea -->
@@ -17,11 +16,10 @@
                 <table id="table2" class="display datatable">
                     <thead>
                         <tr>
-                            <th>Puesto ID</th>
+                            <th>Proveedor ID</th>
                             <th>Nombre</th>
-                            <th>Correo</th>
-                            <th>Tipo de cliente</th>
-                            <th>Cedula</th>
+                            <th>Email</th>
+                            <th>RNC/Cedula</th>
                             <th>Accion</th>
                         </tr>
                     </thead>
@@ -29,14 +27,13 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td>@item._clienteId</td>
+                                <td>@item._proveedorId</td>
                                 <td>@item._nombre</td>
                                 <td>@item._email</td>
-                                <td>@item._categoria</td>
                                 <td>@item._rncCedula</td>
                                 <td>
-                                    <a href="@Url.Action("Editar","Cliente", new { id = item._clienteId})" style="color:white" class="btn btn-info btn-sm waves-effect">Editar</a>
-                                    <a href="@Url.Action("Borrar","Cliente", new { id = item._clienteId})" style="color:white" class="btn btn-danger btn-sm waves-effect">Borrar</a>
+                                    <a href="@Url.Action("Editar","Proveedor", new { id = item._proveedorId})" style="color:white" class="btn btn-info btn-sm waves-effect">Editar</a>
+                                    <a href="@Url.Action("Borrar","Proveedor", new { id = item._proveedorId})" style="color:white" class="btn btn-danger btn-sm waves-effect">Borrar</a>
                                 </td>
                             </tr>
                         }
@@ -60,7 +57,7 @@
         //Data Tables
         $('#table2').DataTable({
             "dom": '<"toolbar tool2"><"clear-filter">frtip',
-            info: true,
+            info: false,
             paging: true,
             responsive: true,
             "oLanguage": { "sSearch": "" }

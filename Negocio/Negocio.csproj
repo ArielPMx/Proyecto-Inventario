@@ -44,6 +44,7 @@
     <Compile Include="ClienteModelNegocio.cs" />
     <Compile Include="ProductoModelNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProveedorModelNegocio.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Datos\Datos.csproj">

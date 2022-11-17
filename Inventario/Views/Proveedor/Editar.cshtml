@@ -1,0 +1,89 @@
+﻿@model Datos.ProveedorModel
+@{
+    ViewBag.Title = "Editar";
+}
+<link rel="stylesheet" href="~/Content/Template/bower_components/bootstrap-select/dist/css/bootstrap-select.css">
+<link href="~/Content/custom.css" rel="stylesheet" />
+
+<div class="container-fluid">
+    <div class="row">
+        <form method="post" action="@Url.Action("Editar","Proveedor")">
+            @Html.HiddenFor(x => x._proveedorId)
+            <div class="col-lg-12">
+                <!-- DataTableArea -->
+                <div class="content-box">
+                    <div class="head info-bg clearfix">
+                        <h5 class="content-title pull-left">Editar Proveedor</h5>
+                    </div>
+                    <div class="content">
+                        <div class="form-group">
+                            <label class="control-label info-color">Nombre Proveedor</label>
+                            <input type="text" name="_nombre" value="@Model._nombre" class="form-control input-info">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label info-color">Tipo Identificacion</label>
+                            <select class="form-control" name="_esRnc" id="_esRncId">
+                                @if (Model._esRnc)
+                                {
+                                    <option value="True" selected> RNC </option>
+                                    <option value="False"> Cedula </option>
+                                }
+                                else
+                                {
+                                    <option value="True"> RNC </option>
+                                    <option value="False" selected> Cedula </option>
+                                }
+                            </select>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label info-color">RNC/Cedula</label>
+                            <input type="text" name="_rncCedula" value="@Model._rncCedula" class="form-control input-info">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label info-color">Telefono</label>
+                            <input type="text" name="_telefono" value="@Model._telefono" class="form-control input-info">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label info-color">Email</label>
+                            <input type="text" name="_email" value="@Model._email" class="form-control input-info">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success">Editar</button>
+                            <a href="@Url.Action("Index","Proveedor")" class="btn btn-danger" style="color:white">Cancelar</a>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- DataTableArea -->
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/Content/Template/bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
+    <script src="~/Content/Template/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/Template/bower_components/datatables.net-responsive/js/dataTables.responsive.js"></script>
+    <script src="~/Content/Template/bower_components/jqvmap/dist/jquery.vmap.min.js"></script>
+    <script src="~/Content/Template/bower_components/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="~/Content/Template/bower_components/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <script src="~/Content/Template/bower_components/moment/min/moment.min.js"></script>
+    <script src="~/Content/Template/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+    <script>
+
+        $("#datetimepicker1").datetimepicker({
+            icons: {
+                time: "zmdi zmdi-time",
+                date: "zmdi zmdi-calendar",
+                up: "zmdi zmdi-chevron-up",
+                down: "zmdi zmdi-chevron-down",
+                previous: "zmdi zmdi-chevron-left",
+                next: "zmdi zmdi-chevron-right"
+            }
+        });
+    </script>
+
+}
