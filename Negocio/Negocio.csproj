@@ -42,9 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClienteModelNegocio.cs" />
+    <Compile Include="EntradaModelNegocio.cs" />
+    <Compile Include="Filtro.cs" />
     <Compile Include="ProductoModelNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProveedorModelNegocio.cs" />
+    <Compile Include="StockModelNegocio.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Datos\Datos.csproj">

@@ -1,0 +1,87 @@
+﻿@model Datos.EntradaModel
+@{
+    ViewBag.Title = "Nuevo";
+}
+
+<link rel="stylesheet" href="~/Content/Template/bower_components/bootstrap-select/dist/css/bootstrap-select.css">
+<link href="~/Content/custom.css" rel="stylesheet" />
+
+<div class="container-fluid">
+    <div class="row">
+        <form method="post" action="@Url.Action("Nuevo","Entradas")">
+            <div class="col-lg-12">
+                <!-- DataTableArea -->
+                <div class="content-box">
+                    <div class="head info-bg clearfix">
+                        <h5 class="content-title pull-left">Agregar Entrada</h5>
+                    </div>
+                    <div class="content">
+                        <div class="form-group">
+                            <label class="control-label info-color">Producto</label>
+                            <select class="form-control" name="_productoId" required>
+                                <option> -- Seleccione -- </option>
+                                @foreach (var item in Model._productos)
+                                {
+                                    <option value="@item.ProductoID">@item.Nombre</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label info-color">Proveedores</label>
+                            <select class="form-control" name="_proveedorId" required>
+                                <option> -- Seleccione -- </option>
+                                @foreach (var item in Model._proveedores)
+                                {
+                                    <option value="@item.ProveedorID">@item.Nombre</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label info-color">Cantidad</label>
+                            <input type="text" name="_cantidad" class="form-control input-info">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label info-color">Precio Unitario</label>
+                            <input type="text" name="_precioUnitario" class="form-control input-info">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success">Guardar</button>
+                            <a href="@Url.Action("Index","Entradas")" class="btn btn-danger" style="color:white">Cancelar</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- DataTableArea -->
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/Content/Template/bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
+    <script src="~/Content/Template/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/Template/bower_components/datatables.net-responsive/js/dataTables.responsive.js"></script>
+    <script src="~/Content/Template/bower_components/jqvmap/dist/jquery.vmap.min.js"></script>
+    <script src="~/Content/Template/bower_components/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="~/Content/Template/bower_components/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <script src="~/Content/Template/bower_components/moment/min/moment.min.js"></script>
+    <script src="~/Content/Template/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+
+
+    <script>
+        $("#datetimepicker1").datetimepicker({
+            icons: {
+                time: "zmdi zmdi-time",
+                date: "zmdi zmdi-calendar",
+                up: "zmdi zmdi-chevron-up",
+                down: "zmdi zmdi-chevron-down",
+                previous: "zmdi zmdi-chevron-left",
+                next: "zmdi zmdi-chevron-right"
+            }
+        });
+    </script>
+
+}
+
+
