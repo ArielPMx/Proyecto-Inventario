@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Datos.StockModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<link rel="stylesheet" href="~/Content/Template/bower_components/datatables/media/css/jquery.dataTables.min.css">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6"><h4>STOCK</h4></div>
+        <div class="col-lg-12">
+            <!-- DataTableArea -->
+            <div class="data-info">
+                <table id="table2" class="display datatable">
+                    <thead>
+                        <tr>
+                            <th>Stock ID</th>
+                            <th>Producto ID</th>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Accion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item._stockId</td>
+                                <td>@item._productoId</td>
+                                <td>@item._productos.Nombre</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary">@item._cantidad</button>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("VerMovimientos","Stock", new { id = item._stockId})" style="color:white" class="btn btn-info btn-sm waves-effect">Ver Movimientos</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- DataTableArea -->
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Content/Template/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/Template/bower_components/datatables.net-responsive/js/dataTables.responsive.js"></script>
+    <script src="~/Content/Template/bower_components/jqvmap/dist/jquery.vmap.min.js"></script>
+    <script src="~/Content/Template/bower_components/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="~/Content/Template/bower_components/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <script src="~/Content/Template/bower_components/moment/min/moment.min.js"></script>
+
+    <script>
+        //Data Tables
+        $('#table2').DataTable({
+            "dom": '<"toolbar tool2"><"clear-filter">frtip',
+            info: false,
+            paging: true,
+            responsive: true,
+            "oLanguage": { "sSearch": "" }
+        });
+        $('.dataTables_filter input').attr("placeholder", "Buscar");
+    </script>
+}
+

@@ -1,0 +1,127 @@
+﻿@model  Datos.StockModel
+@{
+    ViewBag.Title = "VerMovimientos";
+}
+
+
+<link rel="stylesheet" href="~/Content/Template/bower_components/bootstrap-select/dist/css/bootstrap-select.css">
+<link href="~/Content/custom.css" rel="stylesheet" />
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- DataTableArea -->
+            <div class="content-box">
+                <div class="head info-bg clearfix">
+                    <h5 class="content-title pull-left">Producto: @Model._producto</h5>
+                </div>
+                <div class="content">
+                    <table class="table table-hover table-bordered">
+                        <tr>
+                            <td>Producto</td>
+                            <td>@Model._producto</td>
+                        </tr>
+                        <tr>
+                            <td>Cantidad</td>
+                            <td>@Model._cantidad</td>
+                        </tr>
+                        <tr>
+                            <td>Fecha Registro</td>
+                            <td>@Model._fechaStock.ToString("dddd, dd MMMM yyyy")</td>
+                        </tr>
+                        <tr>
+                            <td>Fecha Actualizacion</td>
+                            <td>@Model._fechaActualizacion.ToString("dddd, dd MMMM yyyy")</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <!-- DataTableArea -->
+        </div>
+        <div class="col-lg-6">
+            <!-- DataTableArea -->
+            <div class="content-box">
+                <div class="head info-bg clearfix">
+                    <h5 class="content-title pull-left">Movimientos de Facturacion</h5>
+                </div>
+                <div class="content">
+                    <table class="table table-hover table-bordered">
+                        <tr>
+                            <td>Facturacion ID</td>
+                            <td>Cliente</td>
+                            <td>Precio</td>
+                            <td>Fecha Factura</td>
+                        </tr>
+                        @foreach (var item in Model._stockFacturacion)
+                        {
+                            <tr>
+                                <td>@item.FacturacionID</td>
+                                <td>@item.Facturacion.Cliente.Nombre</td>
+                                <td>@item.Precio</td>
+                                <td>@item.Fecha.Value.ToString("dddd, dd MMMM yyyy")</td>
+                            </tr>
+                            
+                        }
+                    </table>
+                    <table class="table table-hover table-bordered">
+                        <tr>
+                            <td>Producto</td>
+                            <td>Cantidad</td>
+                            <td>Precio</td>
+                        </tr>
+
+
+                        @foreach (var item in Model._stockFacturacion)
+                        {
+                            foreach (var item2 in item.Facturacion.DetalleFactura)
+                            {
+                                <tr>
+                                    <td>@item2.Productos.Nombre</td>
+                                    <td>@item2.Cantidad</td>
+                                    <td>@item2.PrecioTotal</td>
+                                </tr>
+                            }
+                            break;
+                        }
+                    </table>
+                    <div class="form-group">
+                        <a href="@Url.Action("Index","Stock")" class="btn btn-info" style="color:white">Volver</a>
+                    </div>
+
+                </div>
+            </div>
+            <!-- DataTableArea -->
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/Content/Template/bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
+    <script src="~/Content/Template/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/Template/bower_components/datatables.net-responsive/js/dataTables.responsive.js"></script>
+    <script src="~/Content/Template/bower_components/jqvmap/dist/jquery.vmap.min.js"></script>
+    <script src="~/Content/Template/bower_components/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="~/Content/Template/bower_components/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <script src="~/Content/Template/bower_components/moment/min/moment.min.js"></script>
+    <script src="~/Content/Template/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+
+
+    <script>
+        $("#datetimepicker1").datetimepicker({
+            icons: {
+                time: "zmdi zmdi-time",
+                date: "zmdi zmdi-calendar",
+                up: "zmdi zmdi-chevron-up",
+                down: "zmdi zmdi-chevron-down",
+                previous: "zmdi zmdi-chevron-left",
+                next: "zmdi zmdi-chevron-right"
+            }
+        });
+    </script>
+
+}
+
+
+
