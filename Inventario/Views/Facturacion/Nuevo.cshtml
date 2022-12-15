@@ -1,0 +1,115 @@
+﻿@model Datos.FacturacionModel
+@{
+    ViewBag.Title = "Nuevo";
+}
+
+
+<link rel="stylesheet" href="~/Content/Template/bower_components/bootstrap-select/dist/css/bootstrap-select.css">
+<link href="~/Content/custom.css" rel="stylesheet" />
+
+<div class="container-fluid">
+    <div class="row">
+        <form method="post" action="@Url.Action("Nuevo","Facturacion")">
+            <div class="col-lg-12">
+                <!-- DataTableArea -->
+                <div class="content-box">
+                    <div class="head info-bg clearfix">
+                        <h5 class="content-title pull-left">Crear Factura</h5>
+                    </div>
+                    <div class="content">
+                        <div class="form-group">
+                            <label class="control-label info-color">Cantidad de productos a comprar</label>
+                            <input type="text" name="_cantidad" class="form-control input-info">
+                        </div>
+
+                        @if (Model._cantidad != 0)
+                        {
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="control-label info-color">Cliente</label>
+                                        <select class="form-control" name="_clienteId" required>
+                                            <option> -- Seleccione -- </option>
+                                            @foreach (var item in Model._clientesModel)
+                                            {
+                                                <option value="@item._clienteId">@item._nombre</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            for (int i = 1; i <= Model._cantidad; i++)
+                            {
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="control-label info-color">Producto #@i</label>
+                                            <input type="hidden" name="producto.Index" value="@i" />
+                                            <select class="form-control" name="producto[@i]._productoId" required>
+                                                <option> -- Seleccione -- </option>
+                                                @foreach (var item in Model._productosModel)
+                                                {
+                                                    <option value="@item._productoId">@item._nombre</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="control-label info-color">Cantidad</label>
+                                            <input type="text" name="producto[@i]._cantidad" class="form-control input-info">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+                        }
+
+                        <div class="form-group">
+                            @if (Model._cantidad != 0)
+                            {
+                                <button type="submit" class="btn btn-success">Cotizar</button>
+                            }
+                            else
+                            {
+                                <button type="submit" class="btn btn-success">Buscar Productos</button>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <!-- DataTableArea -->
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/Content/Template/bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
+    <script src="~/Content/Template/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/Template/bower_components/datatables.net-responsive/js/dataTables.responsive.js"></script>
+    <script src="~/Content/Template/bower_components/jqvmap/dist/jquery.vmap.min.js"></script>
+    <script src="~/Content/Template/bower_components/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="~/Content/Template/bower_components/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <script src="~/Content/Template/bower_components/moment/min/moment.min.js"></script>
+    <script src="~/Content/Template/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+
+
+    <script>
+        $("#datetimepicker1").datetimepicker({
+            icons: {
+                time: "zmdi zmdi-time",
+                date: "zmdi zmdi-calendar",
+                up: "zmdi zmdi-chevron-up",
+                down: "zmdi zmdi-chevron-down",
+                previous: "zmdi zmdi-chevron-left",
+                next: "zmdi zmdi-chevron-right"
+            }
+        });
+    </script>
+
+}
+
+

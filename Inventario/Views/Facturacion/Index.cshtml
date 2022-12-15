@@ -1,0 +1,99 @@
+﻿@model Datos.FacturacionModel
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<link rel="stylesheet" href="~/Content/Template/bower_components/datatables/media/css/jquery.dataTables.min.css">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3"><h4>Lista de Facturacion</h4></div>
+        <div class="col-lg-3"></div>
+        <div class="col-lg-3"></div>
+        <div class="col-lg-3">
+            <a href="@Url.Action("Nuevo","Facturacion")" class="btn btn-success" style="color:white">Crear Factura</a>
+        </div>
+        <form method="post" action="@Url.Action("Index","Facturacion")">
+            <div class="col-lg-12">
+                <div class="col-md-2">
+                    <label>Productos</label>
+                    <select class="form-control" name="cliente" required>
+                        <option> -- Clientes -- </option>
+                        @foreach (var item in Model._clientesModel)
+                        {
+                            <option value="@item._clienteId">@item._nombre</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label>Desde</label>
+                    <input type="date" class="form-control" name="from" value="@Convert.ToDateTime("1/"+DateTime.Now.Month+"/"+DateTime.Now.Year).ToString("yyyy-MM-dd")" />
+                </div>
+                <div class="col-md-3">
+                    <label>Hasta</label>
+                    <input type="date" class="form-control" name="to" value="@Convert.ToDateTime("1/1/"+ (DateTime.Now.Year + 1)).AddDays(-1).ToString("yyyy-MM-dd")" />
+                </div>
+                <div class="col-lg-2">
+                    <button type="submit" style="margin-top:30px" class="btn btn-primary">Buscar</button>
+                </div>
+            </div>
+
+            <div class="col-lg-12" style="margin-top:15px">
+                <!-- DataTableArea -->
+                <div class="data-info">
+                    <table id="table2" class="display datatable">
+                        <thead>
+                            <tr>
+                                <th>Facturacion ID</th>
+                                <th>Cliente</th>
+                                <th>Precio</th>
+                                <th>Fecha</th>
+                                <th>Accion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model._facturaciones)
+                            {
+                                <tr>
+                                    <td>@item._facturacionId</td>
+                                    <td>@item._cliente.Nombre</td>
+                                    <td>@item._precioConITBIS</td>
+                                    <td>@item._fechaFactura.ToString("dddd, dd MMMM yyyy")</td>
+                                    <td>
+                                        <a href="@Url.Action("VerFactura","Facturacion", new { id = item._facturacionId})" style="color:white" class="btn btn-info btn-sm waves-effect">Ver Factura</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- DataTableArea -->
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Content/Template/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/Template/bower_components/datatables.net-responsive/js/dataTables.responsive.js"></script>
+    <script src="~/Content/Template/bower_components/jqvmap/dist/jquery.vmap.min.js"></script>
+    <script src="~/Content/Template/bower_components/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="~/Content/Template/bower_components/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <script src="~/Content/Template/bower_components/moment/min/moment.min.js"></script>
+
+    <script>
+        //Data Tables
+        $('#table2').DataTable({
+            "dom": '<"toolbar tool2"><"clear-filter">frtip',
+            info: false,
+            paging: true,
+            responsive: true,
+            "oLanguage": { "sSearch": "" }
+        });
+        $('.dataTables_filter input').attr("placeholder", "Buscar");
+    </script>
+}
+
+
+
+
